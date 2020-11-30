@@ -9,13 +9,13 @@ Security considerations for client-server architecture drive the need to deploy 
 These architecture limitations push a new paradigm where the distributed composition means are packed into network protocols.
 
 
-Fluence does that with an open, peer to peer protocol to run and compose software. Fluence expands the client-server architecture and provides a unified way to combine and manage distributed components, both internal microservices and external web APIs, into a single application. Fluence’s goal is to make the distributed execution steps from machine to machine, from vendor to vendor, from peer to peer as easily as “;” between lines of code, efficient on runtime, and with robust security. Fluence presents Aquamarine, a network-native programming language specially designed as a primary composition tool that converts complex distributed systems into language primitives.
+Fluence does that with an open, peer to peer protocol to run and compose software. Fluence expands the client-server architecture and provides a unified way to combine and manage distributed components, both internal microservices and external web APIs, into a single application. Fluence’s goal is to make the distributed execution steps from machine to machine, from vendor to vendor, from peer to peer as easily as “;” between lines of code, efficient on runtime, and with [robust security](https://www.ndm.net/firewall/pdf/palo_alto/Forrester-No-More-Chewy-Centers.pdf). Fluence presents Aquamarine, a network-native programming language specially designed as a primary composition tool that converts complex distributed systems into language primitives.
 
 
 Aquamarine liberates the innovation concentrated in the “glue code” of complex backends. Distributed systems orchestration is commoditized, and the application development is simplified to a handful of scripts managing remote services. Composability is enabled for both private microservices and public APIs, allowing them to speak the same language and leaving security to the Fluence protocol.
 
 
-Fluence enables a new kind of open applications that can build on each other and share data and users. Such applications are hosted by providers running Fluence nodes, and can reuse the same services with Aquamarine scripts. They are easier to build, evolve quickly due to collaborative effort, and follow the similar innovation pace as blockchain-enabled applications (DeFi), but without blockchain scalability limitations.
+Fluence enables a new kind of open applications that can build on each other and share data and users. Such applications are hosted by providers running Fluence nodes, and can reuse the same services with Aquamarine scripts. They are easier to build, evolve quickly due to collaborative effort, and follow the similar innovation pace as [blockchain-enabled applications](https://denisnazarov.com/what-comes-after-open-source) (DeFi), but without blockchain scalability limitations.
 
 
 Existing internet services can benefit from Fluence by having a new simple design with improved reliability, security, and scale. Similarly to open applications, the whole integration layer can be created with the unified protocol between Web APIs, microservices and devices. These integrations would simplify the development and expand the potential customer base for existing online products, open source projects, and enterprises.
@@ -27,12 +27,7 @@ Below we discuss the main aspects of the Fluence protocol and how the pieces wor
 ## Application design
 
 
-One of Fluence’s primary innovations is to allow the application architecture to have a flexible and custom security perimeter that includes both private and public components. Instead of using cloud fronts, building cross-cloud or cross-API integrations, a developer can use Fluence to draw a new security perimeter around the required components to make them work as a single application. Fluence considers these components and the set of distributed execution flows over them as an application. Every flow describes which services must be called and how data must be transferred between them to implement a specific part of the application’s business logic. Services may reside on different cloud platforms, vendors, or servers but communicate with each other over a common protocol.
-
-
-  
-
-
+One of Fluence’s primary innovations is to allow the application architecture to have a flexible and custom security perimeter that includes both private and public components. A developer can use Fluence to draw a new security perimeter around the required components to make them work as a single application. Fluence considers these components and the set of distributed execution flows over them as an application. Every flow describes which services must be called and how data must be transferred between them to implement a specific part of the application’s business logic. Services may reside on different cloud platforms, vendors, or servers but communicate with each other over a common protocol.
 
 Packets with the execution flow travel from peer to peer in the Fluence Network. On every peer, services make computations and perform effects: change state and call external APIs. Only the peers and services authorized to handle the request participate in its handling and no intermediary is able to change the execution flow or data.
 
@@ -43,7 +38,7 @@ The execution flow is expressed with the scriptable Aquamarine language that run
 To compose the backend, developers can plug in existing services like cloud deployments or access external APIs. If a required service or API is missing, it can be implemented and added to the Fluence network as a new WebAssembly program. These Wasm services can be run by any peer and the network is capable of delivering them closer to the corresponding data to achieve the best performance.
 
 
-The peer discovery, service discovery and user authentication are provided by the protocol. The network uses a shared state to store addresses, backend configurations, and access rights. The shared state includes a distributed hash table (“DHT”) and an address book, a TrustGraph for decentralized public key infrastructure (“DPKI”), and a consistent common knowledge layer for non-monotonic data like security perimeter configuration and accounting. 
+The peer discovery, service discovery and user authentication are provided by the protocol. The network uses a shared state to store addresses, backend configurations, and access rights. The shared state includes a distributed hash table (“DHT”) and an address book, a TrustGraph for decentralized public key infrastructure (“DPKI”), and a consistent common knowledge layer for [non-monotonic](https://m-cacm.acm.org/magazines/2020/9/246941-keeping-calm/fulltext) data like security perimeter configuration and accounting. 
 
 ## Aquamarine
 
@@ -53,10 +48,10 @@ Aquamarine is a programming language designed to program an application’s busi
 Aquamarine acts as a messaging medium, a glue for services. If computations are needed on the way, they can be expressed as Wasm services or functions. The same holds for effects: they are expressed as service calls.
 
 
-Aquamarine is based on the pi-calculus – the theory for process coordination. It is extended with data getters to construct arguments of a new service call from the previous ones.
+Aquamarine is based on the [pi-calculus](https://en.wikipedia.org/wiki/%CE%A0-calculus) – the theory for process coordination. It is extended with data getters to construct arguments of a new service call from the previous ones.
 
 
-Higher-level representation of Aquamarine may vary, but capabilities are best understood with the intermediary representation: what can be expressed natively and how it is executed. Aquamarine Intermediary Representation (AIR) is an Abstract Syntax Tree. We use S-expressions for human readability of the AIR code.
+Higher-level representation of Aquamarine may vary, but capabilities are best understood with the intermediary representation: what can be expressed natively and how it is executed. Aquamarine Intermediary Representation (AIR) is an Abstract Syntax Tree. We use [S-expressions](https://en.wikipedia.org/wiki/S-expression) for human readability of the AIR code.
 
 
 ### Composition example
@@ -67,47 +62,47 @@ Aquamarine’s goal is to make service composition, choreography of service call
 AIR
 ```
 (seq
-	; Load arguments (relay's peer ID, chat app ID, message data) from the client
+  ; Load arguments (relay's peer ID, chat app ID, message data) from the client
   (seq
-		(call %init_peer_id% ("load" "relay") [] relay)
-		(seq
-			(call %init_peer_id% ("load" "chat_id") [] chat_id)
-			(call %init_peer_id% ("load" "message") [] message)
-		)
+    (call %init_peer_id% ("load" "relay") [] relay)
+    (seq
+      (call %init_peer_id% ("load" "chat_id") [] chat_id)
+      (call %init_peer_id% ("load" "message") [] message)
+    )
   )
-	(seq 
-		(call relay ("app" "resolve_backend") [chat_id] backend)
-		(seq
-			(call backend.$.members "is_member" [] is_member)
-			(xor
-				(seq
-					(mismatch is_member true)
-					(call %init_peer_id ("chat" "error") ["Cannot send a message to the chat"])
-				)
-				(seq
-					(call backend.$.members "list" [] peers)
-					(seq
-						(fold peers p
-							(par
-								(seq
-									(mismatch p %init_peer_id%)
-									(call p ("chat" "message") [message] acc[])
-								)
-								(next p)
-							)
-						)
-						(seq
-							(call backend.$.history ("op" identity) [])
-							(seq
-								(match acc.length 2)
-								(call %init_peer_id ("chat" "delivered"))
-							)
-						)
-					)
-				)
-			)
-		)
-	)
+  (seq 
+    (call relay ("app" "resolve_backend") [chat_id] backend)
+    (seq
+      (call backend.$.members "is_member" [] is_member)
+      (xor
+        (seq
+          (mismatch is_member true)
+          (call %init_peer_id ("chat" "error") ["Cannot send a message to the chat"])
+        )
+        (seq
+          (call backend.$.members "list" [] peers)
+          (seq
+            (fold peers p
+              (par
+                (seq
+                  (mismatch p %init_peer_id%)
+                  (call p ("chat" "message") [message] acc[])
+                )
+                (next p)
+              )
+            )
+            (seq
+              (call backend.$.history ("op" identity) [])
+              (seq
+                (match acc.length 2)
+                (call %init_peer_id ("chat" "delivered"))
+              )
+            )
+          )
+        )
+      )
+    )
+  )
 )
 ```
 
@@ -133,9 +128,9 @@ par:
     sender.chat.delivered()
 ```
 
-	  
+    
 
-	
+  
 
 This script involves several parties in a single experience of sending a message to a group chat. The parties are: sending peer, other chat’s participants, list of participants service, and a chat history service. First, the script requires the verification if the sender is a member of the chat room, then saves the message to the history and sends the message as an update to all online peers from the group.
 
@@ -171,7 +166,7 @@ Metadata contains a `timestamp`, `ttl` and `max_hops` to protect the network fro
 ### Peers authorization
 
 
-The Fluence protocol covers two aspects of authorization: the authorization of AIR flow, and the application level authorization.
+The Fluence protocol covers two aspects of authorization: the authorization of AIR flow, and the application level authorization. Authentication is done on the transport protocol layer with peer’s signatures.
 
 
 AIR flow level authorization means that all the peers and services know that they participate in the same security perimeter. This security perimeter is common knowledge and kept in a shared network state. Any service trusts the input that comes from another service in a flow as much as it trusts direct requests from users.
@@ -212,14 +207,14 @@ Wasm modules with effects are provisioned by peer owners. Every peer may tell th
 In this example, a service is composed from five modules, linked together within FCE.
 
 
-WebAssembly modules express their interfaces with WIT (WebAssembly Interface Types), a universal format that describes how to pass arguments inside a binary, call a function, and receive results. This format is very simple and often can be derived from the source code of a module.
+WebAssembly modules express their interfaces with WIT (WebAssembly Interface Types), a universal format that describes how to pass arguments inside a binary, call a function, and receive results. This format is very simple and often can be [derived from the source code of a module](https://github.com/fluencelabs/rust-sdk/blob/589daaea45fa1caafa9f1b973a1b4d24b7642d72/crates/wit/src/parse_macro_input.rs#L28).
 
 
 WebAssembly Interface Types provide a consistent API for services and also link modules together to form a service. This linking enables the independence of module lifecycles and variability of the execution environment: a useful algorithm, coded in any Wasm-compiled language, can be reused in different services. Services can easily be extended or altered by re-composing modules (adding or altering).
 
 ### TrustGraph: a DPKI
 
-To describe relationships between peers on the decentralized network, Fluence uses a method similar to the Web of Trust concept. Peers are identified by their Public Keys. Cryptographic signatures are used to authenticate network messages and to protect transmitted data from unauthorized changes.
+To describe relationships between peers on the decentralized network, Fluence uses a method similar to the [Web of Trust](https://en.wikipedia.org/wiki/Web_of_trust) concept. Peers are identified by their Public Keys. Cryptographic signatures are used to authenticate network messages and to protect transmitted data from unauthorized changes.
 
   
 
@@ -238,7 +233,7 @@ Permissions to access services also can be expressed as trust edges. Peers may t
 As a peer-to-peer protocol, Fluence is highly focused on the ability for peers to interact and on the reliability of their connectivity. Establishing an interaction requires peers to exchange public keys and/or internet addresses.
 
 
-Fluence's DHT (Distributed HashTable) is a network-wide shared state used to find, choose, and connect peers. It is based on Kademlia algorithm and inherits the common routines: deriving keys from public keys, XOR distance metric, periodic republishing of DHT data to support network restructuring, etc.
+Fluence's DHT (Distributed HashTable) is a network-wide shared state used to find, choose, and connect peers. It is based on [Kademlia algorithm](https://en.wikipedia.org/wiki/Kademlia) and inherits the common routines: deriving keys from public keys, XOR distance metric, periodic republishing of DHT data to support network restructuring, etc.
 
 
 In the Fluence network, DHT keys play the role of attribute identifiers. Peers register themselves to keys as providers of an attribute so that they can be grouped and resolved by a DHT key. Examples of attributes are:
@@ -283,12 +278,12 @@ The Fluence network includes a consensus layer to ensure that all peers have the
 ## Conclusion
 
 
-We designed Fluence to overcome the limitations of client-server architecture and enable continued innovation of internet applications[ac]. Fluence moves authentication to the network protocol layer and allows expressing complex distributed systems as language primitives, which simplifies the creation of many web applications. The protocol components (FCE, DHT, TrustGraph, Consensus layer) combined together compose a unique developer experience expressed in Aquamarine, opening new distributed application architectures.
+We designed Fluence to overcome the limitations of client-server architecture and enable continued innovation of internet applications. Fluence moves authentication to the network protocol layer and allows expressing complex distributed systems as language primitives, which simplifies the creation of many web applications. The protocol components (FCE, DHT, TrustGraph, Consensus layer) combined together compose a unique developer experience expressed in Aquamarine, opening new distributed application architectures.
 
 
 
 
-Open collaboration around the composition layer will catalyze more innovation than ever possible in either a proprietary cloud ecosystem even the largest technology firms. The World Wide Web has supercharged humanity's progress by letting people freely collaborate, share ideas, and reuse each other's work. Over time, the Web evolved from static page websites to comprehensive dynamic applications but has almost lost its original free composability capabilities as large technology companies have created dominant proprietary ecosystems. Fluence restores internet composability, empowering developers  and powering the web of applications.
+Open collaboration around the composition layer will catalyze more innovation than ever possible in either a proprietary cloud ecosystem or even the largest technology firms. The World Wide Web has supercharged humanity's progress by letting people freely collaborate, share ideas, and reuse each other's work. Over time, the Web evolved from static page websites to comprehensive dynamic applications but has almost lost its original free composability capabilities as large technology companies have created dominant proprietary ecosystems. Fluence restores internet composability, empowering developers  and powering the web of applications.
 
 
 The flexibility of Fluence’s architecture enables additional economic models that go beyond the legacy SaaS and advertising that we see today. These new business models are based on digital licensing for the applications usage over the network and are possible due to the consensus layer which tracks the financial relationships of the service providers and users. This economic opportunity complements the open, customizable and composable Fluence architecture and will help accelerate software innovation.
