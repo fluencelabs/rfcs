@@ -29,6 +29,8 @@ Below we discuss the main aspects of the Fluence protocol and how the pieces wor
 
 One of Fluence’s primary innovations is to allow the application architecture to have a flexible and custom security perimeter that includes both private and public components. A developer can use Fluence to draw a new security perimeter around the required components to make them work as a single application. Fluence considers these components and the set of distributed execution flows over them as an application. Every flow describes which services must be called and how data must be transferred between them to implement a specific part of the application’s business logic. Services may reside on different cloud platforms, vendors, or servers but communicate with each other over a common protocol.
 
+<img src="0-overview/0-overview.png"/>
+
 Packets with the execution flow travel from peer to peer in the Fluence Network. On every peer, services make computations and perform effects: change state and call external APIs. Only the peers and services authorized to handle the request participate in its handling and no intermediary is able to change the execution flow or data.
 
 
@@ -199,10 +201,7 @@ WebAssembly is an efficient and secure universal binary format that acts as a co
 
 Wasm modules with effects are provisioned by peer owners. Every peer may tell the network what effectors they are ready to provide, and the developer may augment these effectors with additional modules to get a full featured service. Such modules may include connectors to databases, storage, APIs, blockchain nodes, etc.
 
-
-  
-
-
+<img src="0-overview/1-service.png"/>
 
 In this example, a service is composed from five modules, linked together within FCE.
 
@@ -217,15 +216,20 @@ WebAssembly Interface Types provide a consistent API for services and also link 
 To describe relationships between peers on the decentralized network, Fluence uses a method similar to the [Web of Trust](https://en.wikipedia.org/wiki/Web_of_trust) concept. Peers are identified by their Public Keys. Cryptographic signatures are used to authenticate network messages and to protect transmitted data from unauthorized changes.
 
   
+<img src="0-overview/2-tg-lens.png"/>
 
 
 
 Direct relationships between peers constitute Trust and a collection of such relationships forms a graph: the TrustGraph. If a peer “trusts'' another peer, it forms an edge in the TrustGraph, which is represented as a cryptographically proven entity that tethers two Peer IDs. 
 
+<img src="0-overview/3-certificate.png"/>
 
 A sequence of Trusts forms a Certificate. Certificates are particularly useful as they allow you to manage trust relationships not knowing all peers in advance: if PeerA explicitly trusts RootZ, it means PeerA trusts other yet-unknown peers trusted by RootZ – but to a lesser extent.  
+
 The list of trusted authorities is subjective for every peer. Derived weights are used for connectivity prioritization: peers with higher weight are less likely to be evicted from the address book.
+
 Trust relationships are used for managing connectivity and permissions. By issuing trust, peers can prioritize connections to key gateways or get better connectivity between peers owned by a particular company. 
+
 Permissions to access services also can be expressed as trust edges. Peers may trust application developers and execute their backends on peer’ resources.  End-users, holding a certificate issued by the developer, will be served by network peers without explicitly delivering user identifiers to peers.
 
 
