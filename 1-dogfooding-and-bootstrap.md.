@@ -7,7 +7,9 @@ This will enable providing live documentation with an embedded playground, allow
 Additionally, this will open up new possibilities for browser-based applications that can run "nodes" in the browser.
 
 The second initiative is to use Fluence as an IPFS pinner.
-By pinning assets such as documentation, websites, and binary data (images, fonts, etc.) to fully operational Fluence nodes, this will ensure that the assets are always available for download and will not fail to load due to lack of copies.
+Pinning assets such as documentation, websites, and binary data (images, fonts, etc.) to fully operational Fluence nodes, will ensure that the assets are always available for download and will not fail to load due to a lack of copies.
+In case of failure, Fluence nodes should be "fixed" to ensure IPFS works. 
+That leads to stability and forces to implement proper infrastructure culture example on the Fluence cluster. 
 
 These initiatives are inspired by the Dotsama ecosystem, which runs nodes in the browser, stores their particles (called XCM) in the browser, and provides IPFS pinning.
 All of their dashboards and governance modes are stored behind Cloudflare in IPFS.
