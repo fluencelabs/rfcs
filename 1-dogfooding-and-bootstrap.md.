@@ -1,16 +1,14 @@
-# Overview
+This RFC outlines two initiatives for Fluence to execute.
+Both initiatives are easy to implement and evaluate, as they have clear goals and metrics for success.
+By executing these initiatives, Fluence will be able to demonstrate its usability for a set of simple applications and expand its ecosystem into new areas.
 
-This document suggest several inititiaves to execute on behalf of Fluence. 
+The first initiative is to run more of Fluence in a browser, specifically the Aqua compiler and Marine runtime, as well as parts of the Host (compiled to WebAssembly) to run in a browser.
+This will enable providing live documentation with an embedded playground, allowing people to understand and iterate faster before deploying to real nodes.
+Additionally, this will open up new possibilities for browser-based applications that can run "nodes" in the browser.
 
-These initiative are easy to execute(there are no unknowns) and evaluate(easy quality metrics).
+The second initiative is to use Fluence as an IPFS pinner.
+By pinning assets such as documentation, websites, and binary data (images, fonts, etc.) to fully operational Fluence nodes, this will ensure that the assets are always available for download and will not fail to load due to lack of copies.
 
-Same time these prove usability of Fluence for simple set of applications and expand ecosystem into resoanble areas of applicaiton.
-
-
-## What these initiatives are?
-
-First, in browser `Aqua`*marine*. 
-
-Second, Fluence documentation and assets stored in IPFS pinned by Kras.
-
-Third, 
+These initiatives are inspired by the Dotsama ecosystem, which runs nodes in the browser, stores their particles (called XCM) in the browser, and provides IPFS pinning.
+All of their dashboards and governance modes are stored behind Cloudflare in IPFS.
+Additional examples of similar implementations can be provided upon request.
